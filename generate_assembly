@@ -1,0 +1,2 @@
+#!/bin/bash
+clang -target bpf -I/usr/include/$(uname -m)-linux-gnu -g -O2 -c $1 -S
