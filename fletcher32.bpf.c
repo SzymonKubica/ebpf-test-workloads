@@ -1,5 +1,4 @@
 #include <stdint.h>
-#include <stdio.h>
 #include <string.h>
 #include <linux/bpf.h>
 #include <bpf/bpf_helpers.h>
@@ -12,7 +11,7 @@
  *
  */
 
-SEC("fletcher32")
+SEC(".main")
 int fletcher_32(void *ctx)
 {
     // Similarly to femtocontainers. The checksum algorithm is run on a 360B
@@ -27,7 +26,7 @@ int fletcher_32(void *ctx)
 
     // Algorithm needs the length in words
     size_t len = strlen(message) / 2;
-    bpf_trace_printk("", 20, *data);
+    bpf_trace_printk("", 20, len);
 
     uint32_t c0 = 0;
     uint32_t c1 = 0;
@@ -43,9 +42,9 @@ int fletcher_32(void *ctx)
             blocklen = 360 * 2;
         }
         len -= blocklen;
-        for (size_t i = 0; i < blocklen; i += 2) {
+        for (size_t i = 0; i <= blocklen; i += 2) {
             bpf_trace_printk("", 20, *data);
-            char c = *(data);
+            char c = *data++;
             c0 = c0 + c;
             c1 = c1 + c0;
         }

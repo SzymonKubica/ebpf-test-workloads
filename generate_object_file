@@ -3,4 +3,4 @@ if [ $# -ne 2 ]; then
     echo "Usage: $0 <input.c> <output.o>"
     exit 1
 fi
-clang -target bpf -I/usr/include/$(uname -m)-linux-gnu -g -O2 -c $1 -o $2
+clang -target bpf -I/usr/include/$(uname -m)-linux-gnu -g -O0 -c $1 -o $2
