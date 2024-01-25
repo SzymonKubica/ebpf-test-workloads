@@ -1,1 +1,0 @@
-/home/szymon/Projects/ebpf-on-microcontrollers/ebpf-test-workloads/object_file_parsing/target/debug/object_file_parsing: /home/szymon/Projects/ebpf-on-microcontrollers/ebpf-test-workloads/object_file_parsing/src/main.rs
